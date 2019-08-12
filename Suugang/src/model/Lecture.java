@@ -1,5 +1,7 @@
 package model;
 
+import java.util.List;
+
 public class Lecture {
 	private String lno;
 	private String lname;
@@ -9,9 +11,17 @@ public class Lecture {
 	private String pname;
 	private int dno;
 	private String dname;
+	private List<Timetable> timetableList;
 	
 	
 	
+
+	public List<Timetable> getTimetableList() {
+		return timetableList;
+	}
+	public void setTimetableList(List<Timetable> timetableList) {
+		this.timetableList = timetableList;
+	}
 	public String getDname() {
 		return dname;
 	}

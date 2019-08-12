@@ -52,7 +52,6 @@
 				<th>강의실</th>
 				<th>강의교수</th>
 				<th>학과</th>
-				<th>강의시간</th>
 		</tr>
    		</thead>
    		<tbody>
@@ -64,7 +63,6 @@
 				<td>${lecture.lroom}</td>
 				<td>${lecture.pname}</td>
 				<td>${lecture.dname}</td>
-				<td><c:forEach var="timetable" items="${lecture.timetableList}">${timetable.day}${timetable.time}/</c:forEach></td>
 			</tr>
 			</c:forEach>
 		</tbody>
@@ -72,5 +70,33 @@
 	</c:if>
 	
 	</div>
+	<hr />
+	
+	<c:if test="${!empty SugangList}">
+		<table class="table table-striped">
+    	<thead>
+     	 <tr>
+				<th>강좌번호</th>
+				<th>강좌명</th>
+				<th>취득학점</th>
+				<th>강의실</th>
+				<th>강의교수</th>
+				<th>학과</th>
+		</tr>
+   		</thead>
+   		<tbody>
+			<c:forEach var="lecture" items="${lectureList}">
+			<tr>
+				<td>${lecture.lno}</td>
+				<td>${lecture.lname}</td>
+				<td>${lecture.credit}</td>
+				<td>${lecture.lroom}</td>
+				<td>${lecture.pname}</td>
+				<td>${lecture.dname}</td>
+			</tr>
+			</c:forEach>
+		</tbody>
+		</table>
+	</c:if>
 </body>
 </html>

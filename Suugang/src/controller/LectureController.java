@@ -15,7 +15,7 @@ import dao.DepartmentDAOImpl;
 import dao.LectureDAOImpl;
 import model.Department;
 import model.Lecture;
-@WebServlet(urlPatterns= {"/lectureList_move"})
+@WebServlet(urlPatterns= {"/lectureList_move","/lecture_search","/lecture_dept"})
 public class LectureController extends HttpServlet {
 
 	@Override
@@ -36,6 +36,28 @@ public class LectureController extends HttpServlet {
 			LectureDAOImpl lecturedao=new LectureDAOImpl();
 			DepartmentDAOImpl departmentDAO=new DepartmentDAOImpl();
 			List<Lecture> lectureList=lecturedao.selectALL();
+			List<Department> departmentList=departmentDAO.selectAll();
+			req.setAttribute("lectureList", lectureList);
+			req.setAttribute("departmentList",departmentList);
+			System.out.println("실행12");
+			RequestDispatcher rd=req.getRequestDispatcher("/jsp/lectureList.jsp");
+			rd.forward(req, resp);
+		}else if(action.equals("lecture_search")) {
+			LectureDAOImpl lecturedao=new LectureDAOImpl();
+			DepartmentDAOImpl departmentDAO=new DepartmentDAOImpl();
+			String lname=req.getParameter("lname");
+			List<Lecture> lectureList=lecturedao.selectByLname(lname);
+			List<Department> departmentList=departmentDAO.selectAll();
+			req.setAttribute("lectureList", lectureList);
+			req.setAttribute("departmentList",departmentList);
+			System.out.println("실행12");
+			RequestDispatcher rd=req.getRequestDispatcher("/jsp/lectureList.jsp");
+			rd.forward(req, resp);
+		}else if(action.equals("lecture_dept")) {
+			LectureDAOImpl lecturedao=new LectureDAOImpl();
+			DepartmentDAOImpl departmentDAO=new DepartmentDAOImpl();
+			String dname=req.getParameter("dname");
+			List<Lecture> lectureList=lecturedao.selectByDname(dname);
 			List<Department> departmentList=departmentDAO.selectAll();
 			req.setAttribute("lectureList", lectureList);
 			req.setAttribute("departmentList",departmentList);

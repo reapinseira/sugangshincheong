@@ -24,6 +24,10 @@ public class Timetable {
 	public void setTime(int time) {
 		this.time = time;
 	}
+	@Override
+	public String toString() {
+		return "Timetable [tno=" + tno + ", day=" + day + ", time=" + time + "]";
+	}
 	
 	
 }	

@@ -11,7 +11,8 @@ import model.Lecture;
 
 public class LectureDAOImpl extends BaseDAO implements LectureDAO {
 	private static final String SELECT_ALL_LECTURE_SQL=
-			"select *from lecture l, professor p where l.pno=p.pno";
+			"select *from lecture natural join department " + 
+			"                     natural join professor";
 	private static final String SELECT_BY_DEPT_LECTURE_SQL=
 			"select * from lecture natural join department " + 
 			"                      natural join professor " + 
@@ -20,12 +21,14 @@ public class LectureDAOImpl extends BaseDAO implements LectureDAO {
 			"select *from lecture natural join department " + 
 			"                     natural join professor " + 
 			"where lname like?";
+	
 	@Override
 	public List<Lecture> selectALL() {
 		List<Lecture> lectureList=new ArrayList<Lecture>();
 		Connection connection=null;
 		PreparedStatement preparedStatement=null;
 		ResultSet resultSet=null;
+		TimetableDAOImpl timetableDAOImpl=new TimetableDAOImpl();
 		
 		try {
 			connection=getConnection();
@@ -34,6 +37,7 @@ public class LectureDAOImpl extends BaseDAO implements LectureDAO {
 			while(resultSet.next()) {
 				Lecture lecture=new Lecture();
 				lecture.setLno(resultSet.getString("lno"));
+				
 				lecture.setLname(resultSet.getString("lname"));
 				lecture.setCredit(resultSet.getInt("credit"));
 				lecture.setLroom(resultSet.getString("lroom"));
@@ -41,6 +45,8 @@ public class LectureDAOImpl extends BaseDAO implements LectureDAO {
 				lecture.setDno(resultSet.getInt("dno"));
 				lecture.setPname(resultSet.getString("pname"));
 				lecture.setDname(resultSet.getString("dname"));
+				String lno=lecture.getLno();
+				lecture.setTimetableList(timetableDAOImpl.selectBylno(lno));
 				lectureList.add(lecture);
 			}
 			System.out.println("½ÇÇà");
@@ -95,6 +101,7 @@ public class LectureDAOImpl extends BaseDAO implements LectureDAO {
 		try {
 			connection=getConnection();
 			preparedStatement=connection.prepareStatement(SELECT_BY_LNAME_LECTURE_SQL);
+			lname="%"+lname+"%";
 			preparedStatement.setString(1, lname);
 			resultSet=preparedStatement.executeQuery();
 			while(resultSet.next()) {
