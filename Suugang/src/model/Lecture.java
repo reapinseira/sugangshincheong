@@ -6,8 +6,24 @@ public class Lecture {
 	private int credit;
 	private String lroom;
 	private int pno;
+	private String pname;
 	private int dno;
+	private String dname;
 	
+	
+	
+	public String getDname() {
+		return dname;
+	}
+	public void setDname(String dname) {
+		this.dname = dname;
+	}
+	public String getPname() {
+		return pname;
+	}
+	public void setPname(String pname) {
+		this.pname = pname;
+	}
 	public String getLno() {
 		return lno;
 	}
