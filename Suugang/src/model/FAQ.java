@@ -8,6 +8,7 @@ public class FAQ {
 	private String fdate;
 	private int fclick;
 	private String ano;
+	private String aname;
 	
 	public int getFno() {
 		return fno;
@@ -45,5 +46,13 @@ public class FAQ {
 	public void setAno(String ano) {
 		this.ano = ano;
 	}
+	public String getAname() {
+		return aname;
+	}
+	public void setAname(String aname) {
+		this.aname = aname;
+	}
+	
+	
 	
 }

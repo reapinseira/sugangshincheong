@@ -1,12 +1,12 @@
 package model;
 
 public class Student {
-	private int sno;
+	private String sno;
 	private String sname;
 	private String sphoto;
 	private int dno;
 	private String spassword;
-	public int getSno() {
+	public String getSno() {
 		return sno;
 	}
 	public String getSname() {
@@ -21,7 +21,7 @@ public class Student {
 	public String getSpassword() {
 		return spassword;
 	}
-	public void setSno(int sno) {
+	public void setSno(String sno) {
 		this.sno = sno;
 	}
 	public void setSname(String sname) {

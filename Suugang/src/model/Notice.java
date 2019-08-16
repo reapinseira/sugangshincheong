@@ -7,6 +7,7 @@ public class Notice {
 	private String ndate;
 	private int nclick;
 	private String ano;
+	private String aname;
 	
 	public int getNno() {
 		return nno;
@@ -44,6 +45,13 @@ public class Notice {
 	public void setAno(String ano) {
 		this.ano = ano;
 	}
+	public String getAname() {
+		return aname;
+	}
+	public void setAname(String aname) {
+		this.aname = aname;
+	}
+	
 	
 	
 }
